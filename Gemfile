@@ -40,6 +40,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'figaro'
 
 group :development, :test do
+  # Pretty print your Ruby objects with style - in full color and with proper indentation
+  gem 'awesome_print'
   # An IRB alternative and runtime developer console
   gem 'pry'
 end
