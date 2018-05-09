@@ -46,6 +46,9 @@ gem 'figaro'
 # OAuth for Ruby
 gem 'oauth'
 
+# A collection of classes that provide different ways to ping computers.
+gem 'net-ping'
+
 group :development, :test do
   # Pretty print your Ruby objects with style - in full color and with proper indentation
   gem 'awesome_print'

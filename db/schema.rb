@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_09_115420) do
+ActiveRecord::Schema.define(version: 2018_05_09_160354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,11 @@ ActiveRecord::Schema.define(version: 2018_05_09_115420) do
     t.bigint "skill_id"
     t.index ["job_id"], name: "index_upwork_jobs_skills_on_job_id"
     t.index ["skill_id"], name: "index_upwork_jobs_skills_on_skill_id"
+  end
+
+  create_table "upwork_proxies", force: :cascade do |t|
+    t.string "host"
+    t.integer "port"
   end
 
   create_table "upwork_search_queries", force: :cascade do |t|
