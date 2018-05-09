@@ -1,0 +1,9 @@
+:verbose:     true
+:pidfile:     ./tmp/pids/sidekiq.pid
+#:logfile:     ./log/sidekiq.log
+:concurrency: 10
+:queues:
+  - upwork
+:schedule:
+  Upwork::FetchJobsJob:
+    every: '1m'

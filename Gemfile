@@ -36,8 +36,15 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# Simple, efficient background processing for Ruby
+gem 'sidekiq'
+gem 'sidekiq-scheduler'
+
 # Simple Rails app configuration
 gem 'figaro'
+
+# OAuth for Ruby
+gem 'oauth'
 
 group :development, :test do
   # Pretty print your Ruby objects with style - in full color and with proper indentation

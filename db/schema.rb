@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_09_114046) do
+ActiveRecord::Schema.define(version: 2018_05_09_115420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,27 @@ ActiveRecord::Schema.define(version: 2018_05_09_114046) do
     t.bigint "skill_id"
     t.index ["job_id"], name: "index_upwork_jobs_skills_on_job_id"
     t.index ["skill_id"], name: "index_upwork_jobs_skills_on_skill_id"
+  end
+
+  create_table "upwork_search_queries", force: :cascade do |t|
+    t.string "q"
+    t.string "title"
+    t.string "cache_category"
+    t.integer "page", default: 0
+    t.boolean "came_to_end", default: false
+    t.bigint "category_id"
+    t.bigint "subcategory_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_upwork_search_queries_on_category_id"
+    t.index ["subcategory_id"], name: "index_upwork_search_queries_on_subcategory_id"
+  end
+
+  create_table "upwork_search_queries_skills", force: :cascade do |t|
+    t.bigint "search_query_id"
+    t.bigint "skill_id"
+    t.index ["search_query_id"], name: "index_upwork_search_queries_skills_on_search_query_id"
+    t.index ["skill_id"], name: "index_upwork_search_queries_skills_on_skill_id"
   end
 
   create_table "upwork_skills", force: :cascade do |t|
