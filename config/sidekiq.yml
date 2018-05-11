@@ -1,9 +1,12 @@
 :verbose:     true
 :pidfile:     ./tmp/pids/sidekiq.pid
-#:logfile:     ./log/sidekiq.log
-:concurrency: 10
+:logfile:     ./log/sidekiq.log
+:concurrency: 15
 :queues:
-  - upwork
+  - [upwork_opening_uid, 1]
+  - [upwork, 9]
 :schedule:
+  Upwork::FetchProxiesJob:
+    every: '10m'
   Upwork::FetchJobsJob:
-    every: '1m'
+    every: '10m'

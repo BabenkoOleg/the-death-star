@@ -86,6 +86,9 @@ ActiveRecord::Schema.define(version: 2018_05_09_160354) do
   create_table "upwork_proxies", force: :cascade do |t|
     t.string "host"
     t.integer "port"
+    t.integer "state", default: 0
+    t.boolean "got_recaptcha", default: false
+    t.datetime "got_recaptcha_at"
   end
 
   create_table "upwork_search_queries", force: :cascade do |t|

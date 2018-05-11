@@ -7,7 +7,7 @@ class Upwork::FetchProxiesJob < ApplicationJob
     rows = page.xpath('//*[@id="proxylisttable"]/tbody').children
 
     rows.each do |row|
-      proxy = Upwork::Proxy.find_or_initialize_by(
+      proxy = Upwork::Proxy.find_or_create_by(
         host: row.children[0].text,
         port: row.children[1].text.to_i
       )
@@ -15,7 +15,7 @@ class Upwork::FetchProxiesJob < ApplicationJob
       if Net::Ping::TCP.new(proxy.host, proxy.port).ping?
         proxy.save if proxy.new_record?
       else
-        proxy.delete
+        proxy.dead!
       end
     end
   end
