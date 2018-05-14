@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_09_160354) do
+ActiveRecord::Schema.define(version: 2018_05_14_054343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,6 +125,29 @@ ActiveRecord::Schema.define(version: 2018_05_09_160354) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_upwork_subcategories_on_category_id"
+  end
+
+  create_table "v_tiger_crms", force: :cascade do |t|
+    t.string "name"
+    t.string "api_url"
+    t.string "email"
+    t.string "access_key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "v_tiger_pipe_line_entities", force: :cascade do |t|
+    t.string "vtiger_from_id"
+    t.string "vtiger_to_id"
+    t.string "kind"
+    t.integer "state"
+    t.bigint "crm_from_id"
+    t.bigint "crm_to_id"
+    t.json "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["crm_from_id"], name: "index_v_tiger_pipe_line_entities_on_crm_from_id"
+    t.index ["crm_to_id"], name: "index_v_tiger_pipe_line_entities_on_crm_to_id"
   end
 
 end

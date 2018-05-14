@@ -46,8 +46,12 @@ gem 'figaro'
 # OAuth for Ruby
 gem 'oauth'
 
+# Simple HTTP and REST client for Ruby, inspired by microframework syntax for specifying actions
+gem 'rest-client'
 # A collection of classes that provide different ways to ping computers.
 gem 'net-ping'
+# Ruby/ProgressBar is a text progress bar library for Ruby
+gem 'ruby-progressbar'
 
 group :development, :test do
   # Pretty print your Ruby objects with style - in full color and with proper indentation
