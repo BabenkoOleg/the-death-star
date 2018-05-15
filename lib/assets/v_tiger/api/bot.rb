@@ -68,6 +68,19 @@ module VTiger
         end
       end
 
+      def create(type, element)
+        body = {
+          sessionName: session_name,
+          operation: 'create',
+          elementType: type,
+          element: element
+        }
+        body[:element]['assigned_user_id'] = @user_id
+        body[:element] = body[:element].to_json
+
+        response = JSON.parse(RestClient.post(api_url, body))
+      end
+
       def retrieve(id)
         response = RestClient.get(api_url, params: {
           operation: 'retrieve',
@@ -78,6 +91,15 @@ module VTiger
         response = JSON.parse(response)
 
         response['success'] ? response['result'] : nil
+      end
+
+      def list_types
+        response = RestClient.get(api_url, params: {
+          operation: 'listtypes',
+          sessionName: session_name,
+        })
+
+        JSON.parse(response)
       end
     end
   end
