@@ -5,7 +5,6 @@ namespace :v_tiger do
       'Lead' => {
         'active_assignments_count' => 'cf_leads_upworkactiveassignmentscount',
         'avg_hourly_jobs_rate' => 'cf_leads_upworkavghourlyjobsrate',
-        'cf_894' => 'cf_leads_technologies',
         'cf_898' => 'cf_leads_upworkid',
         'cf_906' => 'cf_leads_facebook',
         'cf_908' => 'cf_leads_linkdin',
@@ -80,7 +79,7 @@ namespace :v_tiger do
       }
     }
 
-    entities = [VTiger::PipeLine::Entity.where(vtiger_to_id: nil).first]
+    entities = VTiger::PipeLine::Entity.where(vtiger_to_id: nil)
 
     bar = ProgressBar.create(
       total: entities.count,
@@ -95,12 +94,20 @@ namespace :v_tiger do
     bot.authorize!
 
     entities.each do |entity|
-      binding.pry
-      # cf_leads_techtest
       entity_data = JSON.parse(entity.data)
-
       new_data = {}
+
+      if entity_data['cf_894'].present?
+        skills =
+          entity_data['cf_894'].split(' |##| ')
+                               .map { |s| s.strip!; s.gsub!(/("|\s\|##\||\s\|##|\s\|#|\s\|)/, ''); s.downcase }
+                               .map { |s| s.gsub(' ', '-') }
+
+        new_data['cf_leads_technologies'] = Upwork::Skill.where(title: skills).pluck(:title)
+      end
+
       fields[entity.kind].each { |from, to| new_data[to] = entity_data[from] }
+
       new_data['lastname'] = 'none' if new_data['lastname'].empty?
       new_data['contacttype'] = 'Lead' if entity.kind == 'Contact'
 
