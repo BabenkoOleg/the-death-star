@@ -10,4 +10,8 @@ class Upwork::Job < ApplicationRecord
     :expecting_client_info, :fetching_client_info, :error_fetching_client_info,
     :processed
   ]
+
+  def set_parsing_error(description, state)
+    update(parsing_error_description: description, parsing_state: state)
+  end
 end

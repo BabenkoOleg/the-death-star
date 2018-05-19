@@ -1,13 +1,15 @@
 class Upwork::Proxy < ApplicationRecord
+  include Upwork::Occupied
+
   enum state: [:alive, :dead, :faulty]
 
   class << self
-    def random_alive
-      while true
-        banned = where('got_recaptcha = ? and got_recaptcha_at < ?', true, DateTime.now - 5.minutes)
-        banned.update_all(got_recaptcha: false, got_recaptcha_at: nil)
+    def free_and_alive
+      banned = where('got_recaptcha = ? and got_recaptcha_at < ?', true, DateTime.now - 5.minutes)
+      banned.update_all(got_recaptcha: false, got_recaptcha_at: nil)
 
-        proxy = where(state: :alive, got_recaptcha: false).sample
+      while true
+        proxy = free.where(state: :alive, got_recaptcha: false).sample
 
         break if proxy.nil?
 

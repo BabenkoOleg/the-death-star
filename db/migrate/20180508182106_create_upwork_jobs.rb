@@ -11,6 +11,7 @@ class CreateUpworkJobs < ActiveRecord::Migration[5.2]
       t.string :url, null: false
       t.string :upwork_id, null: false
       t.string :upwork_client_id
+      t.string :parsing_error_description
       t.integer :slack_state, default: 0
       t.integer :parsing_state, default: 0
       t.float :budget

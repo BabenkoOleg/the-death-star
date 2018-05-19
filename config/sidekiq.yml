@@ -1,12 +1,17 @@
 :verbose:     true
 :pidfile:     ./tmp/pids/sidekiq.pid
 :logfile:     ./log/sidekiq.log
-:concurrency: 15
+:concurrency: 10
 :queues:
-  - [upwork_opening_uid, 1]
-  - [upwork, 9]
+ - upwork_master
+ - upwork_proxies
+ - upwork_fetching_information
 :schedule:
+  Upwork::MasterJob:
+    every: '20s'
   Upwork::FetchProxiesJob:
     every: '10m'
-  Upwork::FetchJobsJob:
-    every: '10m'
+:limits:
+  upwork_master: 1
+  upwork_proxies: 1
+  upwork_fetching_information: 4

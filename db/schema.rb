@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_14_054343) do
+ActiveRecord::Schema.define(version: 2018_05_17_083553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2018_05_14_054343) do
     t.string "url", null: false
     t.string "upwork_id", null: false
     t.string "upwork_client_id"
+    t.string "parsing_error_description"
     t.integer "slack_state", default: 0
     t.integer "parsing_state", default: 0
     t.float "budget"
@@ -125,6 +126,15 @@ ActiveRecord::Schema.define(version: 2018_05_14_054343) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_upwork_subcategories_on_category_id"
+  end
+
+  create_table "upwork_users", force: :cascade do |t|
+    t.string "email"
+    t.string "password"
+    t.boolean "busy", default: false
+    t.datetime "made_request_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "v_tiger_crms", force: :cascade do |t|

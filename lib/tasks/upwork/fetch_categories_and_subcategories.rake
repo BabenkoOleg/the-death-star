@@ -1,7 +1,7 @@
 namespace :upwork do
   desc 'Update the list of available categories and subcategories'
   task fetch_categories_and_subcategories: :environment do
-    client = Upwork::Crawler::Api.new
+    client = Upwork::Api.new
 
     categories_data = client.fetch(:categories)['categories']
 

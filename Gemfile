@@ -39,6 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Simple, efficient background processing for Ruby
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
+gem 'sidekiq-limit_fetch'
 
 # Simple Rails app configuration
 gem 'figaro'
@@ -46,8 +47,6 @@ gem 'figaro'
 # OAuth for Ruby
 gem 'oauth'
 
-# Simple HTTP and REST client for Ruby, inspired by microframework syntax for specifying actions
-gem 'rest-client'
 # A collection of classes that provide different ways to ping computers.
 gem 'net-ping'
 # Ruby/ProgressBar is a text progress bar library for Ruby
