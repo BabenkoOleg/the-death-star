@@ -51,6 +51,8 @@ gem 'oauth'
 gem 'net-ping'
 # Ruby/ProgressBar is a text progress bar library for Ruby
 gem 'ruby-progressbar'
+# Simple HTTP and REST client for Ruby, inspired by microframework syntax for specifying actions
+gem 'rest-client'
 
 group :development, :test do
   # Pretty print your Ruby objects with style - in full color and with proper indentation
