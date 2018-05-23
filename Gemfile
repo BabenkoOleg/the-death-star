@@ -13,6 +13,12 @@ gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
+# Blazing fast application deployment tool
+gem 'mina', '~> 1.2', '>= 1.2.3', require: false
+# Puma tasks for Mina
+gem 'mina-puma', '~> 1.1', require: false
+# Tasks to deploy Sidekiq with mina.
+gem 'mina-sidekiq', '~> 1.0', '>= 1.0.3', require: false
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
