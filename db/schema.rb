@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2018_05_17_083553) do
     t.string "country"
     t.string "state"
     t.string "world_region"
-    t.string "opening_id"
+    t.string "opening_uid"
     t.string "upwork_id", null: false
     t.string "vtiger_id"
     t.string "vtiger_state", default: "0"
@@ -88,6 +88,8 @@ ActiveRecord::Schema.define(version: 2018_05_17_083553) do
     t.string "host"
     t.integer "port"
     t.integer "state", default: 0
+    t.boolean "busy", default: false
+    t.datetime "last_request_at"
     t.boolean "got_recaptcha", default: false
     t.datetime "got_recaptcha_at"
   end
@@ -131,8 +133,10 @@ ActiveRecord::Schema.define(version: 2018_05_17_083553) do
   create_table "upwork_users", force: :cascade do |t|
     t.string "email"
     t.string "password"
+    t.string "user_agent"
+    t.integer "waiting_time", default: 1
     t.boolean "busy", default: false
-    t.datetime "made_request_at"
+    t.datetime "last_request_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

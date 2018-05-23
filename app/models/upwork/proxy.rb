@@ -1,7 +1,7 @@
 class Upwork::Proxy < ApplicationRecord
   include Upwork::Occupied
 
-  enum state: [:alive, :dead, :faulty]
+  enum state: [:alive, :dead]
 
   class << self
     def free_and_alive

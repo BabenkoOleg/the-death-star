@@ -8,7 +8,7 @@ class CreateUpworkClients < ActiveRecord::Migration[5.2]
       t.string :country
       t.string :state
       t.string :world_region
-      t.string :opening_id
+      t.string :opening_uid
       t.string :upwork_id, null: false
       t.string :vtiger_id
       t.string :vtiger_state, default: 0

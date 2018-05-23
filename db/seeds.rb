@@ -11,7 +11,6 @@
 #
 
 # Create Fake users
-
 JSON.parse(ENV['upwork_users']).each do |user|
   email, password = user.split(' & ')
   next if Upwork::User.where(email: email).exists?
@@ -22,5 +21,8 @@ end
 
 # Create Search requests
 %w[python javascript rails ruby angular].each do |query|
-  Upwork::SearchQuery.create(q: query)
+  unless Upwork::SearchQuery.where(q: query).exists?
+    sq = Upwork::SearchQuery.create(q: query)
+    puts " -- SearchQuery<q: #{sq.q}> created"
+  end
 end
