@@ -81,5 +81,3 @@ test:
 production:
   <<: *default
   database: the-death-star_production
-  username: the-death-star
-  password: <%= ENV['THE-DEATH-STAR_DATABASE_PASSWORD'] %>
