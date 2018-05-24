@@ -83,4 +83,4 @@ production:
   <<: *default
   database: the-death-star_production
   username: darth_vader
-  password: <%= TheDeathStar.credentials.database_password %>
+  password: <%= TheDeathStar::Application.credentials.database_password %>
