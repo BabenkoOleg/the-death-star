@@ -25,7 +25,7 @@ set :branch, 'master'
 # Don't forget to add a path to the uploads folder if you are using Dragonfly or CarrierWave.
 # Otherwise, you will lose your uploads on each deploy.
 set :shared_dirs, fetch(:shared_dirs, []).push('log', 'tmp/pids', 'tmp/sockets', 'public/uploads')
-set :shared_files, fetch(:shared_files, []).push('config/application.yml', 'config/database.yml', 'config/secrets.yml', 'config/puma.rb')
+set :shared_files, fetch(:shared_files, []).push('config/application.yml', 'config/database.yml', 'config/master.key', 'config/puma.rb')
 
 # Username of ssh user for access to the remote server.
 set :user, 'darth_vader'

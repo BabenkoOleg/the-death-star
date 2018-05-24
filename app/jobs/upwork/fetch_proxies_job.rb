@@ -1,5 +1,3 @@
-require './app/models/upwork/job'
-
 class Upwork::FetchProxiesJob < Upwork::BaseJob
   queue_as :upwork_proxies
 
