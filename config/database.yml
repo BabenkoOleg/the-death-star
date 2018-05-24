@@ -78,6 +78,9 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+
 production:
   <<: *default
   database: the-death-star_production
+  username: darth_vader
+  password: <%= TheDeathStar.credentials.database_password %>
