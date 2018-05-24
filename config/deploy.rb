@@ -2,13 +2,13 @@ require 'mina/bundler'
 require 'mina/rails'
 require 'mina/rvm'
 require 'mina/git'
-require 'mina/rvm'
 require 'mina/puma'
 require 'mina_sidekiq/tasks'
 
 # Set the domain and port of the remote server.
 set :domain, '206.189.59.240'
 set :port, 7871
+set :forward_agent, true
 
 
 # Set the folder of the remote server where Mina will deploy your application.
@@ -36,8 +36,8 @@ set :application_name, 'TheDeathStar'
 # Set ruby version. If you have RVM installed globally, you'll also need to set an RVM path,
 # like: set :rvm_use_path, '/usr/local/rvm/scripts/rvm'.
 # You can find the RVM location with the rvm info command.
-task :environment do
-  invoke :'rvm:use', 'ruby-2.5.0@default'
+task :remote_environment do
+  invoke :'rvm:use', 'ruby-2.6.0-preview1'
 end
 
 # Put any custom commands you need to run at setup
