@@ -37,7 +37,7 @@ set :application_name, 'TheDeathStar'
 # like: set :rvm_use_path, '/usr/local/rvm/scripts/rvm'.
 # You can find the RVM location with the rvm info command.
 task :remote_environment do
-  invoke :'rvm:use', 'ruby-2.6.0-preview1'
+  invoke :'rvm:use', 'ruby-2.5.0'
 end
 
 # Put any custom commands you need to run at setup
