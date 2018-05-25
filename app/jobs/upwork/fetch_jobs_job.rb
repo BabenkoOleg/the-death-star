@@ -1,5 +1,5 @@
 class Upwork::FetchJobsJob < ApplicationJob
-  queue_as :upwork
+  queue_as :upwork_fetching_jobs
 
   def perform
     client = Upwork::Crawler::Api.new

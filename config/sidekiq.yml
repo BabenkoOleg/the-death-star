@@ -5,13 +5,17 @@
 :queues:
  - upwork_master
  - upwork_proxies
+ - upwork_fetching_jobs
  - upwork_fetching_information
 :schedule:
   Upwork::MasterJob:
     every: '1m'
+  Upwork::FetchJobsJob:
+    every: '5m'
   Upwork::FetchProxiesJob:
     every: '10m'
 :limits:
   upwork_master: 1
   upwork_proxies: 1
-  upwork_fetching_information: 4
+  upwork_fetching_jobs: 1
+  upwork_fetching_information: 6
