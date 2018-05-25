@@ -1,5 +1,5 @@
 ActiveAdmin.register Upwork::User do
-  FIELDS = [:email, :busy, :password, :user_agent, :last_request_at]
+  FIELDS = [:email, :busy, :locked, :password, :user_agent, :last_request_at]
 
   menu label: 'Users', parent: 'Upwork', priority: 1
 
@@ -7,8 +7,29 @@ ActiveAdmin.register Upwork::User do
 
   config.sort_order = 'id_asc'
 
+  batch_action :lock do |ids|
+    batch_action_collection.where(id: ids).update_all(locked: true)
+    redirect_to collection_path, notice: 'The users have been locked.'
+  end
+
+  batch_action :unlock do |ids|
+    batch_action_collection.where(id: ids).update_all(locked: false)
+    redirect_to collection_path, notice: 'The users have been unlocked.'
+  end
+
+  member_action :lock, method: :put do
+    resource.update(locked: true)
+    redirect_to admin_upwork_users_path, notice: 'Locked!'
+  end
+
+  member_action :unlock, method: :put do
+    resource.update(locked: false)
+    redirect_to admin_upwork_users_path, notice: 'Unlocked!'
+  end
+
   filter :email
   filter :busy
+  filter :locked
   filter :last_request_at
 
   index do
@@ -16,8 +37,15 @@ ActiveAdmin.register Upwork::User do
     id_column
     column :email
     column :busy
+    column :locked
     column :last_request_at
-    actions
+    actions defaults: true do |user|
+      if user.locked?
+        link_to 'Unlock', unlock_admin_upwork_user_path(user), method: :put
+      else
+        link_to 'Lock', lock_admin_upwork_user_path(user), method: :put
+      end
+    end
   end
 
   show { attributes_table *FIELDS }
@@ -27,6 +55,7 @@ ActiveAdmin.register Upwork::User do
       f.input :email
       f.input :password
       f.input :busy
+      f.input :locked
       f.input :user_agent
     end
     f.actions
