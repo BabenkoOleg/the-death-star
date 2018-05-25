@@ -2,7 +2,7 @@ class Upwork::FetchJobsJob < ApplicationJob
   queue_as :upwork_fetching_jobs
 
   def perform
-    client = Upwork::Crawler::Api.new
+    client = Upwork::Api.new
     queries = Upwork::SearchQuery.includes(:category, :subcategory, :skills).all
 
     fetched_jobs = queries.map do |query|
