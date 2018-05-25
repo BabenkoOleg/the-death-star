@@ -8,7 +8,7 @@
  - upwork_fetching_information
 :schedule:
   Upwork::MasterJob:
-    every: '30s'
+    every: '1m'
   Upwork::FetchProxiesJob:
     every: '10m'
 :limits:
