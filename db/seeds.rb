@@ -26,3 +26,20 @@ end
     puts " -- SearchQuery<q: #{sq.q}> created"
   end
 end
+
+
+# Admin Panel
+# -----------
+#
+
+admin_user_email = Rails.application.credentials[Rails.env.to_sym][:admin_user_email]
+admin = AdminUser.find_by(email: admin_user_email)
+
+unless admin.present?
+  AdminUser.create(
+    email: admin_user_email,
+    password: Rails.application.credentials[Rails.env.to_sym][:admin_user_password],
+    password_confirmation: Rails.application.credentials[Rails.env.to_sym][:admin_user_password],
+  )
+
+end
