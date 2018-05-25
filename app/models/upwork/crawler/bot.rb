@@ -32,7 +32,7 @@ module Upwork
 
         @running = true
 
-        while running
+        while running && !user.reload.locked?
           begin
             logger.log(:info, "Next step: #{step}")
 
