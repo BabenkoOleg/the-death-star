@@ -1,9 +1,7 @@
 ActiveAdmin.register Upwork::User do
-  FIELDS = [:email, :sidekiq_jid, :locked, :password, :user_agent, :last_request_at]
-
   menu label: 'Users', parent: 'Upwork', priority: 1
 
-  permit_params *FIELDS
+  permit_params :email, :sidekiq_jid, :locked, :password, :user_agent, :last_request_at
 
   config.sort_order = 'id_asc'
 
@@ -48,12 +46,12 @@ ActiveAdmin.register Upwork::User do
     end
   end
 
-  show { attributes_table *FIELDS }
+  show { attributes_table :email, :sidekiq_jid, :locked, :password, :user_agent, :last_request_at }
 
   form do |f|
     f.inputs do
       f.input :email
-      f.input :password
+      f.input :password, as: :string
       f.input :sidekiq_jid
       f.input :locked
       f.input :user_agent
