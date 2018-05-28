@@ -168,18 +168,4 @@ ActiveRecord::Schema.define(version: 2018_05_25_061730) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "v_tiger_pipe_line_entities", force: :cascade do |t|
-    t.string "vtiger_from_id"
-    t.string "vtiger_to_id"
-    t.string "kind"
-    t.integer "state"
-    t.bigint "crm_from_id"
-    t.bigint "crm_to_id"
-    t.json "data"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["crm_from_id"], name: "index_v_tiger_pipe_line_entities_on_crm_from_id"
-    t.index ["crm_to_id"], name: "index_v_tiger_pipe_line_entities_on_crm_to_id"
-  end
-
 end
