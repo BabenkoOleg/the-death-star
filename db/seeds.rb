@@ -11,22 +11,27 @@
 #
 
 # Create Fake users
-JSON.parse(ENV['upwork_users']).each do |user|
-  email, password = user.split(' & ')
+%w[
+  nagiki@storiqax.com
+  minilanosi@gifto12.com
+  doted@bitwhites.top
+  powe@aditus.info
+  vuvuheseh@ethersportz.info
+  docijocevi@gifto12.com
+].each do |email|
   next if Upwork::User.where(email: email).exists?
 
-  Upwork::User.create(email: email, password: password)
-  puts " -- #{email} created"
+  Upwork::User.create(email: email, password: 'Akkerman9000#')
+  puts " -- User #{email} created"
 end
 
 # Create Search requests
 %w[python javascript rails ruby angular].each do |query|
   unless Upwork::SearchQuery.where(q: query).exists?
     sq = Upwork::SearchQuery.create(q: query)
-    puts " -- SearchQuery<q: #{sq.q}> created"
+    puts " -- SearchQuery #{sq.q} created"
   end
 end
-
 
 # Admin Panel
 # -----------
@@ -41,5 +46,5 @@ unless admin.present?
     password: Rails.application.credentials[Rails.env.to_sym][:admin_user_password],
     password_confirmation: Rails.application.credentials[Rails.env.to_sym][:admin_user_password],
   )
-
+  puts " -- AdminUser #{admin_user_email} created"
 end

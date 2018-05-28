@@ -51,9 +51,6 @@ gem 'sidekiq'
 gem 'sidekiq-scheduler'
 gem 'sidekiq-limit_fetch'
 
-# Simple Rails app configuration
-gem 'figaro'
-
 # OAuth for Ruby
 gem 'oauth'
 
