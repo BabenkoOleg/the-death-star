@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_25_122545) do
+ActiveRecord::Schema.define(version: 2018_05_25_061730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,7 +78,6 @@ ActiveRecord::Schema.define(version: 2018_05_25_122545) do
     t.string "description"
     t.string "url", null: false
     t.string "upwork_id", null: false
-    t.string "upwork_client_id"
     t.string "parsing_error_description"
     t.integer "slack_state", default: 0
     t.integer "parsing_state", default: 0
@@ -151,12 +150,13 @@ ActiveRecord::Schema.define(version: 2018_05_25_122545) do
     t.string "email"
     t.string "password"
     t.string "user_agent"
+    t.string "sidekiq_jid"
     t.integer "waiting_time", default: 1
-    t.boolean "busy", default: false
+    t.boolean "locked", default: false
+    t.boolean "boolean", default: false
     t.datetime "last_request_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "locked", default: false
   end
 
   create_table "v_tiger_crms", force: :cascade do |t|

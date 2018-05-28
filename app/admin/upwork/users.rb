@@ -1,5 +1,5 @@
 ActiveAdmin.register Upwork::User do
-  FIELDS = [:email, :busy, :locked, :password, :user_agent, :last_request_at]
+  FIELDS = [:email, :sidekiq_jid, :locked, :password, :user_agent, :last_request_at]
 
   menu label: 'Users', parent: 'Upwork', priority: 1
 
@@ -28,7 +28,7 @@ ActiveAdmin.register Upwork::User do
   end
 
   filter :email
-  filter :busy
+  filter :sidekiq_jid
   filter :locked
   filter :last_request_at
 
@@ -36,7 +36,7 @@ ActiveAdmin.register Upwork::User do
     selectable_column
     id_column
     column :email
-    column :busy
+    column :sidekiq_jid
     column :locked
     column :last_request_at
     actions defaults: true do |user|
@@ -54,7 +54,7 @@ ActiveAdmin.register Upwork::User do
     f.inputs do
       f.input :email
       f.input :password
-      f.input :busy
+      f.input :sidekiq_jid
       f.input :locked
       f.input :user_agent
     end

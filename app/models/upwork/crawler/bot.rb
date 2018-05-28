@@ -27,9 +27,6 @@ module Upwork
       end
 
       def run!
-        return nil if user.busy?
-        user.busy!
-
         @running = true
 
         while running && !user.reload.locked?
@@ -48,7 +45,6 @@ module Upwork
       def set_proxy
         @proxy.free! if @proxy.present?
         @proxy = Upwork::Proxy.free_and_alive
-        @proxy.busy!
         @step = :get_xsft_token
       end
 
@@ -98,7 +94,10 @@ module Upwork
       def set_job
         @job = Upwork::Job.find_by(parsing_state: [:expecting_opening_uid, :expecting_client_info])
 
-        @running = false if job.nil?
+        if job.nil?
+          sleep 60
+          return
+        end
 
         @step = :fetch_opening_uid if @job.expecting_opening_uid?
         @step = :fetch_client_info if @job.expecting_client_info?
