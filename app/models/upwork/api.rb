@@ -12,10 +12,10 @@ module Upwork
     attr_reader :consumer, :token
 
     def initialize
-      @consumer_key =    TheDeathStar::Application.credentials.upwork_api_consumer_key
+      @access_token = TheDeathStar::Application.credentials.upwork_api_access_token
+      @access_secret = TheDeathStar::Application.credentials.upwork_api_access_secret
+      @consumer_key = TheDeathStar::Application.credentials.upwork_api_consumer_key
       @consumer_secret = TheDeathStar::Application.credentials.upwork_api_consumer_secret
-      @access_token =    TheDeathStar::Application.credentials.upwork_api_access_token
-      @access_secret =   TheDeathStar::Application.credentials.upwork_api_access_secret
 
       @consumer = OAuth::Consumer.new(consumer_key, consumer_secret, {
         site: "https://www.upwork.com/api",

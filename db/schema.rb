@@ -159,13 +159,4 @@ ActiveRecord::Schema.define(version: 2018_05_25_061730) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "v_tiger_crms", force: :cascade do |t|
-    t.string "name"
-    t.string "api_url"
-    t.string "email"
-    t.string "access_key"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
 end

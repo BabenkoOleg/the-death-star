@@ -1,4 +1,4 @@
-class Upwork::MasterJob < Upwork::BaseJob
+class Upwork::MasterJob < ApplicationJob
   queue_as :upwork_master
 
   def perform

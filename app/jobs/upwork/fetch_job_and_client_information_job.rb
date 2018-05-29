@@ -1,4 +1,4 @@
-class Upwork::FetchJobAndClientInformationJob < Upwork::BaseJob
+class Upwork::FetchJobAndClientInformationJob < ApplicationJob
   queue_as :upwork_fetching_information
 
   def perform(user_id)

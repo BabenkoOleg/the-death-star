@@ -1,7 +1,6 @@
 module Upwork
   module Crawler
     class Bot
-      USER_AGENT = 'Mozilla/5.0 (Unknown; Linux) AppleWebKit/538.1 (KHTML, like Gecko) Chrome/v1.0.0 Safari/538.1'.freeze
       UPWORK_URL = 'https://www.upwork.com'.freeze
       UPWORK_LOGIN_URL = "#{UPWORK_URL}/ab/account-security/login".freeze
 
@@ -171,7 +170,7 @@ module Upwork
         req['Accept'] = 'text/html'
         req['Referer'] = 'https://www.upwork.com/'
         req['Authority'] = 'www.upwork.com'
-        req['User-Agent'] = USER_AGENT
+        req['User-Agent'] = user.user_agent
         req['Cache-Control'] = 'no-cache'
         req['Accept-Language'] = 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7,la;q=0.6,de;q=0.5'
         req['Upgrade-Insecure-Requests'] = '1'

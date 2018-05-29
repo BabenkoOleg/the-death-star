@@ -1,4 +1,4 @@
-class Upwork::FetchProxiesJob < Upwork::BaseJob
+class Upwork::FetchProxiesJob < ApplicationJob
   queue_as :upwork_proxies
 
   def perform

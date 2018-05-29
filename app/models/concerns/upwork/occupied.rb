@@ -1,3 +1,4 @@
+# TODO: move to Proxy model
 module Upwork
   module Occupied
     extend ActiveSupport::Concern

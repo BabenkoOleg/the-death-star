@@ -21,7 +21,12 @@
 ].each do |email|
   next if Upwork::User.where(email: email).exists?
 
-  Upwork::User.create(email: email, password: 'Akkerman9000#')
+  Upwork::User.create(
+    email: email,
+    password: 'Akkerman9000#',
+    user_agent: 'Mozilla/5.0 (Unknown; Linux) AppleWebKit/538.1 (KHTML, like Gecko) Chrome/v1.0.0 Safari/538.1'
+  )
+
   puts " -- User #{email} created"
 end
 
