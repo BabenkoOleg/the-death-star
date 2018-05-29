@@ -38,6 +38,10 @@ end
   end
 end
 
+# Fetch Categories, Subcategories and Skills
+Upwork::FetchCategoriesAndSubcategoriesTask.perform!
+Upwork::FetchSkillsTask.perform!
+
 # Admin Panel
 # -----------
 #
@@ -53,3 +57,4 @@ unless admin.present?
   )
   puts " -- AdminUser #{admin_user_email} created"
 end
+
